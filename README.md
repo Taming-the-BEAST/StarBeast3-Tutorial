@@ -191,9 +191,9 @@ This set up ensures the same but independent site models for each partition. In 
 
 <figure align="center">
 
-<a id="fig5"></a> <img src="figures/site_model2.png" style="width:70.0%;"/>
+<a id="fig6"></a> <img src="figures/site_model2.png" style="width:70.0%;"/>
 
-<figcaption>Figure 5: Copy site model.</figcaption>
+<figcaption>Figure 6: Copy site model.</figcaption>
 
 </figure>
 
@@ -219,15 +219,15 @@ We will use birth-death model as species tree prior. Only constant rate coalesce
 
 > Switch to **Priors** tab.
 >
-> For **Tree.t:Species** select **Birth Death Model** ([Figure 6](#fig6)).
+> For **Tree.t:Species** select **Birth Death Model** ([Figure 7](#fig7)).
 >
 > Leave other priors to their default values.
 
 <figure align="center">
 
-<a id="fig6"></a> <img src="figures/strict_priors.png" style="width:70.0%;"/>
+<a id="fig7"></a> <img src="figures/strict_priors.png" style="width:70.0%;"/>
 
-<figcaption>Figure 6: Tree Prior.</figcaption>
+<figcaption>Figure 7: Tree Prior.</figcaption>
 
 </figure>
 
@@ -252,9 +252,9 @@ The length of MCMC chain and frequency of logging will deopend on the complexity
 
 <figure align="center">
 
-<a id="fig7"></a> <img src="figures/strict_MCMC.png" style="width:70.0%;"/>
+<a id="fig8"></a> <img src="figures/strict_MCMC.png" style="width:70.0%;"/>
 
-<figcaption>Figure 7: MCMC setup.</figcaption>
+<figcaption>Figure 8: MCMC setup.</figcaption>
 
 </figure>
 
@@ -274,9 +274,9 @@ Now, we will run the XMl with BEAST2. It may take around 20-25 minutes, you can 
 
 <figure align="center">
 
-<a id="fig8"></a> <img src="figures/strict_run_beast.png" style="width:70.0%;"/>
+<a id="fig9"></a> <img src="figures/strict_run_beast.png" style="width:70.0%;"/>
 
-<figcaption>Figure 8: Run BEAST2.</figcaption>
+<figcaption>Figure 9: Run BEAST2.</figcaption>
 
 </figure>
 
@@ -286,7 +286,7 @@ The *.log* file produced by BEAST2 can be viewed in **Tracer**. It help you to v
 
 > Launch **Tracer**
 >
-> Drag and drop *canid_strict_clock.log* on the **Tracer** window ([Figure 9](#fig9)).
+> Drag and drop *canid_strict_clock.log* on the **Tracer** window ([Figure 10](#fig10)).
 
 Now you should see the posterior values for:
 
@@ -302,9 +302,9 @@ Now you should see the posterior values for:
 
 <figure align="center">
 
-<a id="fig9"></a> <img src="figures/strict_trace.png" style="width:70.0%;"/>
+<a id="fig10"></a> <img src="figures/strict_trace.png" style="width:70.0%;"/>
 
-<figcaption>Figure 9: Strict clock run log in Tracer.</figcaption>
+<figcaption>Figure 10: Strict clock run log in Tracer.</figcaption>
 
 </figure>
 
@@ -331,9 +331,9 @@ Our analysis produces a tree for each loci as well as the species tree. Therefor
 
 <figure align="center">
 
-<a id="fig10"></a> <img src="figures/strict_ugly.png" style="width:70.0%;"/>
+<a id="fig11"></a> <img src="figures/strict_ugly.png" style="width:70.0%;"/>
 
-<figcaption>Figure 10: Explore the tree posterior in UglyTrees.</figcaption>
+<figcaption>Figure 11: Explore the tree posterior in UglyTrees.</figcaption>
 
 </figure>
 
@@ -353,25 +353,25 @@ One way to summarise the trees is by using the program **TreeAnnotator**. Until 
 
 ### Produce MCC Tree
 
-Use settings as in [Figure 11](#fig11) to produce MCC tree. If you are confused about the set up, please refer to [Introduction to BEAST2](https://taming-the-beast.org/tutorials/Introduction-to-BEAST2/) tutorial.
+Use settings as in [Figure 12](#fig12) to produce MCC tree. If you are confused about the set up, please refer to [Introduction to BEAST2](https://taming-the-beast.org/tutorials/Introduction-to-BEAST2/) tutorial.
 
 <figure align="center">
 
-<a id="fig11"></a> <img src="figures/strict_mcc.png" style="width:70.0%;"/>
+<a id="fig12"></a> <img src="figures/strict_mcc.png" style="width:70.0%;"/>
 
-<figcaption>Figure 11: Producing MCC summary tree.</figcaption>
+<figcaption>Figure 12: Producing MCC summary tree.</figcaption>
 
 </figure>
 
 ### Produce CCD Tree
 
-Use settings as in [Figure 12](#fig12) to produce CCD tree. If you are confused about the set up, please refer to [Introduction to BEAST2](https://taming-the-beast.org/tutorials/Introduction-to-BEAST2/) tutorial.
+Use settings as in [Figure 13](#fig13) to produce CCD tree. If you are confused about the set up, please refer to [Introduction to BEAST2](https://taming-the-beast.org/tutorials/Introduction-to-BEAST2/) tutorial.
 
 <figure align="center">
 
-<a id="fig12"></a> <img src="figures/strict_ccd0.png" style="width:70.0%;"/>
+<a id="fig13"></a> <img src="figures/strict_ccd0.png" style="width:70.0%;"/>
 
-<figcaption>Figure 12: Producing CCD0 summary tree.</figcaption>
+<figcaption>Figure 13: Producing CCD0 summary tree.</figcaption>
 
 </figure>
 
@@ -391,13 +391,13 @@ At the top left hand menu you can choose many visualisation options. We will dis
 >
 > Select **Style =\> Label precision limit =\> 3 sig. figures**
 
-Now your figure should look similar to [Figure 13](#fig13).
+Now your figure should look similar to [Figure 14](#fig14).
 
 <figure align="center">
 
-<a id="fig13"></a> <img src="figures/strict_icytree_mcc.png" style="width:70.0%;"/>
+<a id="fig14"></a> <img src="figures/strict_icytree_mcc.png" style="width:70.0%;"/>
 
-<figcaption>Figure 13: Visualising summary tree in IcyTree.</figcaption>
+<figcaption>Figure 14: Visualising summary tree in IcyTree.</figcaption>
 
 </figure>
 
@@ -418,13 +418,13 @@ We will change the species tree clock model
 >
 > Select **Species Tree Relaxed Clock** from the dropdown menu
 >
-> Set **Clock.rate** to 0.001 ([Figure 14](#fig14))
+> Set **Clock.rate** to 0.001 ([Figure 15](#fig15))
 
 <figure align="center">
 
-<a id="fig14"></a> <img src="figures/relaxed_clock.png" style="width:70.0%;"/>
+<a id="fig15"></a> <img src="figures/relaxed_clock.png" style="width:70.0%;"/>
 
-<figcaption>Figure 14: Setting fixed mean for relaxed clock.</figcaption>
+<figcaption>Figure 15: Setting fixed mean for relaxed clock.</figcaption>
 
 </figure>
 
@@ -448,13 +448,13 @@ We will not estimate the mean clock rate here to run the analysis faster. Howeve
 > 
 > Switch to the **Priors**
 >
-> Assign a _LogNormal(M=0.001, S=1)_ prior to **SpeciesTreeRelaxedClockRate.Species**. Ensure that **Mean in Real Space** is cheked ([Figure 15](#fig15)).
+> Assign a _LogNormal(M=0.001, S=1)_ prior to **SpeciesTreeRelaxedClockRate.Species**. Ensure that **Mean in Real Space** is cheked ([Figure 16](#fig16)).
 
 <figure align="center">
 
-<a id="fig15"></a> <img src="figures/relaxed_clock_prior.png" style="width:70.0%;"/>
+<a id="fig16"></a> <img src="figures/relaxed_clock_prior.png" style="width:70.0%;"/>
 
-<figcaption>Figure 15: Relaxed clock mean prior.</figcaption>
+<figcaption>Figure 16: Relaxed clock mean prior.</figcaption>
 
 </figure>
 
@@ -488,11 +488,13 @@ To verify convergence and explore the recovered parameter priors, load the .log 
 >
 > Drag and drop *canid_relaxed_clock.log* on the **Tracer** window.
 
-Scroll down in the parameter list, you should notice new parameters describing the empirical mean, variance, coefficient of variation of the estimated per-branch rates as well as the standard deviation parameter to the uncorrelated relaxed clock of the species tree ([Figure 16](#fig16)).
+Scroll down in the parameter list, you should notice new parameters describing the empirical mean, variance, coefficient of variation of the estimated per-branch rates as well as the standard deviation parameter to the uncorrelated relaxed clock of the species tree ([Figure 17](#fig17)).
 
-<a id="fig16"></a> <img src="figures/relaxed_tracer.png" style="width:70.0%;"/>
+<figure align="center">
 
-<figcaption>Figure 16: View log for relaxed clock analysis in Tracer.</figcaption>
+<a id="fig17"></a> <img src="figures/relaxed_tracer.png" style="width:70.0%;"/>
+
+<figcaption>Figure 17: View log for relaxed clock analysis in Tracer.</figcaption>
 
 </figure>
 
@@ -521,11 +523,13 @@ The taxon set is set up the same way as before ([Figure 4](#fig4)).
 > 
 > Switch to **Priors** tab
 > 
-> From drop down list, select **FBDModel** ([Figure 17](#fig17))
+> From drop down list, select **FBDModel** ([Figure 18](#fig18))
 
-<a id="fig17"></a> <img src="figures/fbd_tree_prior.png" style="width:70.0%;"/>
+<figure align="center">
 
-<figcaption>Figure 17: Set FBDModel as Tree Prior.</figcaption>
+<a id="fig18"></a> <img src="figures/fbd_tree_prior.png" style="width:70.0%;"/>
+
+<figcaption>Figure 18: Set FBDModel as Tree Prior.</figcaption>
 
 </figure>
 
@@ -542,7 +546,9 @@ Our data contains only variable characters, therefore we will use MKv model. If 
 >
 > Now, you are promted to use MKv model. Click **Yes**.
 
-Morphological data should now appear within the **Partitions** tab, [Figure 18](#fig18).
+Morphological data should now appear within the **Partitions** tab, [Figure 19](#fig19).
+
+<figure align="center">
 
 <a id="fig18"></a> <img src="figures/fbd_morph_partition.png" style="width:70.0%;"/>
 
@@ -574,11 +580,13 @@ This analysis includes samples through time (fossils), therefore we have to info
 >
 > Click **OK**
 
-The tab should now look like [Figure 19](#fig19).
+The tab should now look like [Figure 20](#fig20).
 
-<a id="fig19"></a> <img src="figures/fbd_tip_dates.png" style="width:70.0%;"/>
+<figure align="center">
 
-<figcaption>Figure 19: Set tip dates.</figcaption>
+<a id="fig20"></a> <img src="figures/fbd_tip_dates.png" style="width:70.0%;"/>
+
+<figcaption>Figure 20: Set tip dates.</figcaption>
 
 </figure>
 
@@ -596,11 +604,13 @@ We are dealing with the same diploid population as before, therefore you don't n
 > 
 > Now, select the other molecular partitions and copy the model from the first one
 
-For morphological data, we will not change the default model. Select one of the morphological partitions and verify that the **Subst Model** is **Lewis MK** (ascertainment correction will not be shown here) and it looks like [figure 20](#fig20).
+For morphological data, we will not change the default model. Select one of the morphological partitions and verify that the **Subst Model** is **Lewis MK** (ascertainment correction will not be shown here) and it looks like [figure 21](#fig21).
 
-<a id="fig20"></a> <img src="figures/fbd_tip_dates.png" style="width:70.0%;"/>
+<figure align="center">
 
-<figcaption>Figure 20: Set tip dates.</figcaption>
+<a id="fig21"></a> <img src="figures/fbd_tip_dates.png" style="width:70.0%;"/>
+
+<figcaption>Figure 21: Set tip dates.</figcaption>
 
 </figure>
 
@@ -637,11 +647,13 @@ Now we will set the prior for strict clock rate of morphological data:
 
 > Navigate to **clockRate.c:morphology_canis** parameter
 >
-> Select **1/X** from the drop down list ([Figure 22](#fig22)). 
+> Select **1/X** from the drop down list ([Figure 23](#fig23)). 
 
-<a id="fig22"></a> <img src="figures/fbd_morph_clock_prior.png" style="width:70.0%;"/>
+<figure align="center">
 
-<figcaption>Figure 22: Set morphological clock prior.</figcaption>
+<a id="fig23"></a> <img src="figures/fbd_morph_clock_prior.png" style="width:70.0%;"/>
+
+<figcaption>Figure 23: Set morphological clock prior.</figcaption>
 
 </figure>
 
