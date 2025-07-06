@@ -673,7 +673,7 @@ We can only compare the clades comprised of extant taxa. However, we do see diff
 
 # Useful Links
 
--   [Bayesian Evolutionary Analysis with BEAST 2](http://www.beast2.org/book.html) {% cite BEAST2book2014 --file Tutorial-Template/master-refs.bib %}
+-   [Bayesian Evolutionary Analysis with BEAST 2](http://www.beast2.org/book.html) {% cite BEAST2book2014 --file StarBEAST3-Tutorial/master-refs.bib %}
 -   BEAST 2 website and documentation: <http://www.beast2.org/>
 -   StarBeast3 repository: <https://github.com/rbouckaert/starbeast3/tree/master>
 -   Join the BEAST user discussion: <http://groups.google.com/group/beast-users>
