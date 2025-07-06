@@ -27,7 +27,7 @@ To avoid repetition, you should read through all parts even if interested in a s
 
 # Dataset
 
-In this tutorial we will reconstruct species tree of **Canis** genus. We will analyse 24 species, 8 out which are extant. We will use 16 nuclear loci ({% cite lindblad2005genome --file StarBeast3/master-refs.bib %}) for extant taxa in the first two analyses. We will add 50 morphological character data for all 24 taxa for the total evidence analysis. Before starting download all the data for this tutorial. You may browse these data using your preferred alignment viewer before proceeding with the tutorial.
+In this tutorial we will reconstruct species tree of **Canis** genus. We will analyse 24 species, 8 out which are extant. We will use 16 nuclear loci ({% cite lindblad2005genome --file StarBEAST3-Tutorial/master-refs.bib %}) for extant taxa in the first two analyses. We will add 50 morphological character data for all 24 taxa for the total evidence analysis. Before starting download all the data for this tutorial. You may browse these data using your preferred alignment viewer before proceeding with the tutorial.
 
 ------------------------------------------------------------------------
 
@@ -36,7 +36,7 @@ In this tutorial we will reconstruct species tree of **Canis** genus. We will an
 
 ### BEAST2 - Bayesian Evolutionary Analysis Sampling Trees 2
 
-[BEAST2](http://www.beast2.org) is a free software package for Bayesian evolutionary analysis of molecular sequences using MCMC and strictly oriented toward inference using rooted, time-measured phylogenetic trees {% cite Bouckaert2014 --file StarBeast3/master-refs.bib %}. The development and maintenance of BEAST is a large, collaborative effort and the program includes a wide array of different types of analyses. This tutorial uses the BEAST v{{ page.beastversion }}.
+[BEAST2](http://www.beast2.org) is a free software package for Bayesian evolutionary analysis of molecular sequences using MCMC and strictly oriented toward inference using rooted, time-measured phylogenetic trees {% cite Bouckaert2014 --file StarBEAST3-Tutorial/master-refs.bib %}. The development and maintenance of BEAST is a large, collaborative effort and the program includes a wide array of different types of analyses. This tutorial uses the BEAST v{{ page.beastversion }}.
 
 ### BEAUti - Bayesian Evolutionary Analysis Utility
 
@@ -201,7 +201,7 @@ This set up ensures the same but independent site models for each partition. In 
 
 The clock model assumption of StarBeast3 is that every gene may evolve under it's own clock rate that is relative to the overall species tree clock rate. Therefore, the prior on each gene clock rate should have mean of 1 and not too high variance. If we choose not to estimate per gene clock rates, they default to 1 and all have the overall species tree clock rate.
 
-In this analysis we will estimate relative clock rate for each gene and set the species tree clock rate to 0.001 (based on previous estimate for RAG-1 {% cite hugall2007calibration --file StarBeast3/master-refs.bib %}). Note, that in real analyses you can rarely avoid estimating the clock rate as it required a lot of a-priori data. Using strict clock is similarly too simplistic for many cases.
+In this analysis we will estimate relative clock rate for each gene and set the species tree clock rate to 0.001 (based on previous estimate for RAG-1 {% cite hugall2007calibration --file StarBEAST3-Tutorial/master-refs.bib %}). Note, that in real analyses you can rarely avoid estimating the clock rate as it required a lot of a-priori data. Using strict clock is similarly too simplistic for many cases.
 
 > Switch to **Gene Clock Model** tab.
 >
@@ -345,7 +345,7 @@ Note that by default, the width of each species tree node is proportional to the
 
 We can combine the posterior species trees into a single tree that tells a a lot about the distribution but is much easier to visualise and comprehend.
 
-One way to summarise the trees is by using the program **TreeAnnotator**. Until recently the *maximum clade credibility* tree (MCC) has been the default summary method in TreeAnotator. To produce MCC trees TreeAnotator takes the set of trees and find the best supported tree by maximising the product of the posterior clade probabilities. It will then annotate this representative summary tree with the mean ages of all the nodes and the corresponding 95% HPD ranges as well as the posterior clade probability for each node. A new point estimate, called a *conditional clade distribution* tree (CCD) has been proposed {% cite berling2025accurate --file StarBeast3/master-refs.bib %}. It has been shown to outperform MCC in terms of accuracy (based on Robinson-Foulds distance to the true tree) and precision (how different are the point estimates calculated for replicate MCMC chains). CCD methods may produce a tree that would be well supported but has not been sampled during MCMC. This is beneficial for large trees and complex parameter regimes. Since both methods are still widely used, we show how to use them to summarise the posterior tree distribution.
+One way to summarise the trees is by using the program **TreeAnnotator**. Until recently the *maximum clade credibility* tree (MCC) has been the default summary method in TreeAnotator. To produce MCC trees TreeAnotator takes the set of trees and find the best supported tree by maximising the product of the posterior clade probabilities. It will then annotate this representative summary tree with the mean ages of all the nodes and the corresponding 95% HPD ranges as well as the posterior clade probability for each node. A new point estimate, called a *conditional clade distribution* tree (CCD) has been proposed {% cite berling2025accurate --file StarBEAST3-Tutorial/master-refs.bib %}. It has been shown to outperform MCC in terms of accuracy (based on Robinson-Foulds distance to the true tree) and precision (how different are the point estimates calculated for replicate MCMC chains). CCD methods may produce a tree that would be well supported but has not been sampled during MCMC. This is beneficial for large trees and complex parameter regimes. Since both methods are still widely used, we show how to use them to summarise the posterior tree distribution.
 
 > Importantly, currently we **can not** produce CCD trees reliably for trees including direct sampled ancestor fossils. Therefore, do not use it when **FBD** prior is selected for species tree!
 
@@ -500,7 +500,7 @@ Here, the value of the coefficient of variation indicated that branch rates are 
 
 # 3. Total Evidence Dating
 
-Finally, StarBeast3 is capable of leveraging the fossil record and associated morphological data for **total-evidence analysys**. In this case we will use fossilized birth-death (FBD) model ({% cite heath2014fossilized gavryushkina2014bayesian --file StarBeast3/master-refs.bib %}) as species tree prior in the MSC process. Since adding both morphological and molecular data can be complicated within BEAUti, you must follow the steps in order they are given.
+Finally, StarBeast3 is capable of leveraging the fossil record and associated morphological data for **total-evidence analysys**. In this case we will use fossilized birth-death (FBD) model ({% cite heath2014fossilized gavryushkina2014bayesian --file StarBEAST3-Tutorial/master-refs.bib %}) as species tree prior in the MSC process. Since adding both morphological and molecular data can be complicated within BEAUti, you must follow the steps in order they are given.
 
 ## 3.1 Adding Fossils and Morphological Data
 
@@ -658,7 +658,7 @@ Finally, load the trees from section 1 and section 3 in FBD and compare.
 
 > Question: Can you identify any diferences in clade support? 
 
-You should find that the tree topology is largely similar. However, the species _Cuon alpinus_ and _Lycaon pictus_ are now completely supported in by the FBD analysis, while it is not the case when we use only molecular data in section 1. This discrepancy has been previously reported ({% cite zrzavy2004phylogeny --file StarBeast3/master-refs.bib %}).   
+You should find that the tree topology is largely similar. However, the species _Cuon alpinus_ and _Lycaon pictus_ are now completely supported in by the FBD analysis, while it is not the case when we use only molecular data in section 1. This discrepancy has been previously reported ({% cite zrzavy2004phylogeny --file StarBEAST3-Tutorial/master-refs.bib %}).   
 
 > Question: Can you identify any diferences in clade height?
 
@@ -682,4 +682,4 @@ We can only compare the clades comprised of extant taxa. However, we do see diff
 
 # Relevant References
 
-{% bibliography --cited --file StarBeast3/master-refs.bib %}
+{% bibliography --cited --file StarBEAST3-Tutorial/master-refs.bib %}
