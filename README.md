@@ -1,7 +1,7 @@
 ---
 author: Ugne Stolz
 level: Intermediate
-title: StarBeast3 
+title: StarBeast3 Tutorial
 subtitle: Estimating species trees using StarBeast3
 beastversion: 2.7.4
 tracerversion: 1.7.x
