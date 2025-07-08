@@ -87,7 +87,7 @@ UglyTrees (https://uglytrees.nz) is a browser-based multi-species coalescent tre
 
 <figure align="center">
 
-<a id="fig1"></a> <img src="figures/install.png" style="width:70.0%;"/>
+<a id="fig1"></a> <img src="figures/install.png" />
 
 <figcaption>Figure 1: Install starbeast3</figcaption>
 
@@ -119,7 +119,7 @@ Import the 16 nuclear loci alignments:
 
 <figure align="center">
 
-<a id="fig2"></a> <img src="figures/select_fasta.png" style="width:70.0%;"/>
+<a id="fig2"></a> <img src="figures/select_fasta.png" />
 
 <figcaption>Figure 2: Select all .fasta files.</figcaption>
 
@@ -127,7 +127,7 @@ Import the 16 nuclear loci alignments:
 
 <figure align="center">
 
-<a id="fig3"></a> <img src="figures/loaded_fasta.png" style="width:70.0%;"/>
+<a id="fig3"></a> <img src="figures/loaded_fasta.png" />
 
 <figcaption>Figure 3: Loaded molecular data.</figcaption>
 
@@ -147,7 +147,7 @@ You should now see that every species has two haplotypes assigned to it as in ([
 
 <figure align="center">
 
-<a id="fig4"></a> <img src="figures/taxon_sets.png" style="width:70.0%;"/>
+<a id="fig4"></a> <img src="figures/taxon_sets.png" />
 
 <figcaption>Figure 4: Taxon set.</figcaption>
 
@@ -177,13 +177,13 @@ Now we will set the site model. We will set it up for the first partition and th
 >
 > Now, on the partition list to the left, select all partitions except the first one.
 >
-> At the **Clone from** drop down list, choose the first partition that you have set up ([Figure 5](#fig5)).
+> At the **Clone from** drop down list, choose the first partition that you have set up ([Figure 6](#fig6)).
 
 This set up ensures the same but independent site models for each partition. In real analyses, we may want to increase **Gamma Category Count** to a value between 4 and 8. Here, we will skip this step as it's computationally costly.
 
 <figure align="center">
 
-<a id="fig5"></a> <img src="figures/site_model1.png" style="width:70.0%;"/>
+<a id="fig5"></a> <img src="figures/site_model1.png" />
 
 <figcaption>Figure 5: Site model.</figcaption>
 
@@ -191,7 +191,7 @@ This set up ensures the same but independent site models for each partition. In 
 
 <figure align="center">
 
-<a id="fig6"></a> <img src="figures/site_model2.png" style="width:70.0%;"/>
+<a id="fig6"></a> <img src="figures/site_model2.png" />
 
 <figcaption>Figure 6: Copy site model.</figcaption>
 
@@ -223,7 +223,7 @@ We will use birth-death model as species tree prior. Only constant rate coalesce
 
 <figure align="center">
 
-<a id="fig7"></a> <img src="figures/strict_priors.png" style="width:70.0%;"/>
+<a id="fig7"></a> <img src="figures/strict_priors.png" />
 
 <figcaption>Figure 7: Tree Prior.</figcaption>
 
@@ -236,7 +236,7 @@ We will use birth-death model as species tree prior. Only constant rate coalesce
 
 <figure align="center">
 
-<a id="fig8"></a> <img src="figures/extinction_fraction_prior.png" style="width:70.0%;"/>
+<a id="fig8"></a> <img src="figures/extinction_fraction_prior.png" />
 
 <figcaption>Figure 8: Extinction fraction prior.</figcaption>
 
@@ -263,7 +263,7 @@ The length of MCMC chain and frequency of logging will depend on the complexity 
 
 <figure align="center">
 
-<a id="fig9"></a> <img src="figures/strict_MCMC.png" style="width:70.0%;"/>
+<a id="fig9"></a> <img src="figures/strict_MCMC.png" />
 
 <figcaption>Figure 9: MCMC setup.</figcaption>
 
@@ -285,7 +285,7 @@ Now, we will run the XML with BEAST2. It may take around 20-25 minutes, you can 
 
 <figure align="center">
 
-<a id="fig10"></a> <img src="figures/strict_run_beast.png" style="width:70.0%;"/>
+<a id="fig10"></a> <img src="figures/strict_run_beast.png" />
 
 <figcaption>Figure 10: Run BEAST2.</figcaption>
 
@@ -313,7 +313,7 @@ Now you should see the posterior values for:
 
 <figure align="center">
 
-<a id="fig11"></a> <img src="figures/strict_trace.png" style="width:70.0%;"/>
+<a id="fig11"></a> <img src="figures/strict_trace.png" />
 
 <figcaption>Figure 11: Strict clock run log in Tracer.</figcaption>
 
@@ -342,7 +342,7 @@ Our analysis produces a tree for each loci as well as the species tree. Therefor
 
 <figure align="center">
 
-<a id="fig12"></a> <img src="figures/strict_ugly.png" style="width:70.0%;"/>
+<a id="fig12"></a> <img src="figures/strict_ugly.png" />
 
 <figcaption>Figure 12: Explore the tree posterior in UglyTrees.</figcaption>
 
@@ -368,7 +368,7 @@ Use settings as in [Figure 13](#fig13) to produce MCC tree. If you are confused 
 
 <figure align="center">
 
-<a id="fig13"></a> <img src="figures/strict_mcc.png" style="width:70.0%;"/>
+<a id="fig13"></a> <img src="figures/strict_mcc.png" />
 
 <figcaption>Figure 13: Producing MCC summary tree.</figcaption>
 
@@ -380,7 +380,7 @@ Use settings as in [Figure 14](#fig14) to produce CCD tree. If you are confused 
 
 <figure align="center">
 
-<a id="fig14"></a> <img src="figures/strict_ccd0.png" style="width:70.0%;"/>
+<a id="fig14"></a> <img src="figures/strict_ccd0.png" />
 
 <figcaption>Figure 14: Producing CCD0 summary tree.</figcaption>
 
@@ -406,7 +406,7 @@ Now your figure should look similar to [Figure 15](#fig15).
 
 <figure align="center">
 
-<a id="fig15"></a> <img src="figures/strict_icytree_mcc.png" style="width:70.0%;"/>
+<a id="fig15"></a> <img src="figures/strict_icytree_mcc.png" />
 
 <figcaption>Figure 15: Visualising summary tree in IcyTree.</figcaption>
 
@@ -433,7 +433,7 @@ We will change the species tree clock model
 
 <figure align="center">
 
-<a id="fig16"></a> <img src="figures/relaxed_clock.png" style="width:70.0%;"/>
+<a id="fig16"></a> <img src="figures/relaxed_clock.png" />
 
 <figcaption>Figure 16: Setting fixed mean for relaxed clock.</figcaption>
 
@@ -463,7 +463,7 @@ We will not estimate the mean clock rate here to run the analysis faster. Howeve
 
 <figure align="center">
 
-<a id="fig17"></a> <img src="figures/relaxed_clock_prior.png" style="width:70.0%;"/>
+<a id="fig17"></a> <img src="figures/relaxed_clock_prior.png" />
 
 <figcaption>Figure 17: Relaxed clock mean prior.</figcaption>
 
@@ -503,7 +503,7 @@ Scroll down in the parameter list, you should notice new parameters describing t
 
 <figure align="center">
 
-<a id="fig18"></a> <img src="figures/relaxed_tracer.png" style="width:70.0%;"/>
+<a id="fig18"></a> <img src="figures/relaxed_tracer.png" />
 
 <figcaption>Figure 18: View log for relaxed clock analysis in Tracer.</figcaption>
 
@@ -538,7 +538,7 @@ The taxon set is set up the same way as before ([Figure 4](#fig4)).
 
 <figure align="center">
 
-<a id="fig19"></a> <img src="figures/fbd_tree_prior.png" style="width:70.0%;"/>
+<a id="fig19"></a> <img src="figures/fbd_tree_prior.png" />
 
 <figcaption>Figure 19: Set FBDModel as Tree Prior.</figcaption>
 
@@ -561,7 +561,7 @@ The morphological data should now appear within the **Partitions** tab, [Figure 
 
 <figure align="center">
 
-<a id="fig20"></a> <img src="figures/fbd_morph_partition.png" style="width:70.0%;"/>
+<a id="fig20"></a> <img src="figures/fbd_morph_partition.png" />
 
 <figcaption>Figure 20: Add morphological data.</figcaption>
 
@@ -595,7 +595,7 @@ The tab should now look like [Figure 21](#fig21).
 
 <figure align="center">
 
-<a id="fig21"></a> <img src="figures/fbd_tip_dates.png" style="width:70.0%;"/>
+<a id="fig21"></a> <img src="figures/fbd_tip_dates.png" />
 
 <figcaption>Figure 21: Set tip dates.</figcaption>
 
@@ -619,7 +619,7 @@ For morphological data, we will not change the default model. Select one of the 
 
 <figure align="center">
 
-<a id="fig22"></a> <img src="figures/fbd_site_model.png" style="width:70.0%;"/>
+<a id="fig22"></a> <img src="figures/fbd_site_model.png" />
 
 <figcaption>Figure 22: Morphological data site model.</figcaption>
 
@@ -649,7 +649,7 @@ Let's specify the species clock rate prior:
 
 <figure align="center">
 
-<a id="fig23"></a> <img src="figures/fbd_species_clock_prior.png" style="width:70.0%;"/>
+<a id="fig23"></a> <img src="figures/fbd_species_clock_prior.png" />
 
 <figcaption>Figure 23: Set species clock prior.</figcaption>
 
@@ -664,7 +664,7 @@ Now we will set the prior for strict clock rate of morphological data:
 
 <figure align="center">
 
-<a id="fig24"></a> <img src="figures/fbd_morph_clock_prior.png" style="width:70.0%;"/>
+<a id="fig24"></a> <img src="figures/fbd_morph_clock_prior.png" />
 
 <figcaption>Figure 24: Set morphological clock prior.</figcaption>
 
@@ -692,7 +692,7 @@ We can only compare the clades comprised of extant taxa. However, we do see diff
 # Good To Know 
 
 - To facilitate easy use of uglytrees, the species and individual names should follow a similar pattern so that uglytrees can guess the matching automatically, e.g., individual names should contain the species name as a substring, or before the first \_ etc.
-- StarBeast3 does allow you to sample tip dates. You can find more information on how to set it up through BEAUti here: <https://github.com/rbouckaert/starbeast3/tree/master/workshop>. 
+- StarBeast3 allows to sample tip dates. You can find more information on how to set it up through BEAUti here: <https://github.com/rbouckaert/starbeast3/tree/master/workshop>. 
 - You may also use relaxed clock for morphological data, instead of a strict one. However, at the moment this requires to edit the XML file by hand. Make sure you are using appropriate _species_ tree clock from the StarBeast3 package. Also, be careful to not include any operators that would break the dependence between species and gene trees. 
 - If you are comparing StarBEAST2 and 3 for your analyses you may notice that StarBeast3 is slower per-iteration, but in many cases reaches convergence faster when measured in wall-clock time. 
 
