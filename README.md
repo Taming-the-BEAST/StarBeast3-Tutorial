@@ -1,25 +1,25 @@
 ---
-author: Ugne Stolz
+author: Ugne Stolz, Jordan Douglas
 level: Intermediate
 title: StarBeast3 Tutorial
 subtitle: Estimating species trees using StarBeast3
-beastversion: 2.7.4
+beastversion: 2.7.8
 tracerversion: 1.7.x
 ---
 
 # Background
 
-StarBeast3 is a Bayesian implementation of the multispecies coalescent (MSC) that jointly infers gene and species trees directly from multiple sequence alignments. Trees inferred using this method contain not only topological relationships, but also estimates of species divergence times and gene coalescence times.
+StarBeast3 {% cite douglas2022starbeast3 --file StarBeast3-Tutorial/master-refs.bib %} is a Bayesian implementation of the multispecies coalescent (MSC) that jointly infers gene and species trees directly from multiple sequence alignments and (optionally) morphology data. Trees inferred using this method contain not only topological relationships, but also estimates of species divergence times and gene coalescence times. StarBeast3 is capable of parallelism which can help it tackle large datasets more efficiently than previous MSC implementations in BEAST2.
 
-This tutorial will walk you through the set up three kinds of species tree analyses using StarBEAST3:
+This tutorial will walk you through the set up three kinds of species tree analyses using StarBeast3:
 
-1\. Basic species tree reconstruction using a **strict nuclear clock rate**.
+1\. Basic species tree reconstruction using a **strict molecular clock rate**.
 
 2\. **Relaxed clock** analysis where a separate molecular clock rate is estimated for each species branch.
 
-3\. **Total evidence** analysis where the times and rates and jointly estimated by integrating fossil data into the model.
+3\. **Total evidence** analysis where the times and rates are jointly estimated by integrating fossil data into the model.
 
-Note, that here we assume that you already have some knowledge about birth-death and coalescent modes as well as multispecies coalescent.
+Note, that here we assume that you already have some knowledge about birth-death and coalescent models as well as multispecies coalescent.
 
 This tutorial is completely based on the [tutorial for StarBEAST2 by Huw A. Ogilvie](https://taming-the-beast.org/tutorials/starbeast2-tutorial/). If you are citing this tutorial please cite the StarBEAST2 tutorial too.
 
@@ -27,7 +27,7 @@ To avoid repetition, you should read through all parts even if interested in a s
 
 # Dataset
 
-In this tutorial we will reconstruct species tree of **Canis** genus. We will analyse 24 species, 8 out of which are extant. We will use 16 nuclear loci ({% cite lindblad2005genome --file StarBEAST3-Tutorial/master-refs.bib %}) for extant taxa in the first two analyses. We will add 50 morphological characters data for all 24 taxa for the total evidence analysis. Before starting download all the data for this tutorial. You may browse these data using your preferred alignment viewer before proceeding with the tutorial.
+In this tutorial we will reconstruct species tree of **Canis** genus - a group of mammals which includes wolves, domestic dogs, coyotes, and jackals. We will analyse 24 species, 8 out of which are extant. We will use 16 nuclear loci {% cite lindblad2005genome --file StarBeast3-Tutorial/master-refs.bib %} for extant taxa in the first two analyses. We will add 50 morphological characters data for all 24 taxa for the total evidence analysis. Before proceeding with the tutorial you should download all the data. You may browse these data using your preferred alignment viewer before proceeding with the tutorial.
 
 ------------------------------------------------------------------------
 
@@ -36,7 +36,7 @@ In this tutorial we will reconstruct species tree of **Canis** genus. We will an
 
 ### BEAST2 - Bayesian Evolutionary Analysis Sampling Trees 2
 
-[BEAST2](http://www.beast2.org) is a free software package for Bayesian evolutionary analysis of molecular sequences using MCMC and strictly oriented toward inference using rooted, time-measured phylogenetic trees {% cite Bouckaert2014 --file StarBEAST3-Tutorial/master-refs.bib %}. The development and maintenance of BEAST is a large, collaborative effort and the program includes a wide array of different types of analyses. This tutorial uses the BEAST v{{ page.beastversion }}.
+[BEAST2](http://www.beast2.org) is a free software package for Bayesian evolutionary analysis of molecular sequences using MCMC and strictly oriented toward inference using rooted, time-measured phylogenetic trees {% cite Bouckaert2014 --file StarBeast3-Tutorial/master-refs.bib %}. The development and maintenance of BEAST is a large, collaborative effort and the program includes a wide array of different types of analyses. This tutorial uses the BEAST v{{ page.beastversion }}.
 
 ### BEAUti - Bayesian Evolutionary Analysis Utility
 
@@ -81,7 +81,7 @@ UglyTrees (https://uglytrees.nz) is a browser-based multi-species coalescent tre
 >
 > The new window with the list of all packages will open. Scroll down the list and select **starbeast3**. Click **Install/Upgrade** to install the package (see [Figure 1](#fig1)). This will also install all the packages StarBeast3 depends on (if not already installed).
 >
-> Now repeat the step above, but select **CCD** in the package list. This package is not required to run **starbeast3**, but we will use it for tree sumary in this tutorial.
+> Now repeat the step above, but select **CCD** in the package list. This package is not required to run **starbeast3**, but we will use it for tree summary in this tutorial.
 >
 > Restart **BEAUti**.
 
@@ -113,7 +113,7 @@ Import the 16 nuclear loci alignments:
 >
 > Select all 16 loci (all .fasta files) and select **Open** ([Figure 2](#fig2))
 >
-> You are next prompted to choose the alignment type. Select **"all are neucleotide"** from the dropdown and click **OK**. 
+> You are next prompted to choose the alignment type. Select **"all are nucleotide"** from the dropdown and click **OK**. 
 >
 > There should now be 16 partitions listed in BEAUti ([Figure 3](#fig3))
 
@@ -135,11 +135,11 @@ Import the 16 nuclear loci alignments:
 
 ## 1.2 Taxon Set
 
-Each species in our data sample has two haplotypes *a* and *b*, from the same diploid individual. In datasets involving multiple same-species samples, we may have many haplotypes per species. In our dataset, name of every sample is its species name followed by haplotype indicator. This will allow us to use automation when assigning samples to species.
+Each species in our data sample has two haplotypes *a* and *b*, from the same diploid individual. In datasets involving multiple same-species samples, we may have many haplotypes per species. In our dataset, the name of every sample is its species name followed by a haplotype indicator. This will allow us to use automation when assigning samples to species.
 
 > Select **Taxon Set** tab in **BEAUti**
 >
-> At the bottom of the sample list, click **Gues**
+> At the bottom of the sample list, click **Guess**
 >
 > Keep **use everything** radio button selected and choose **before last**. Keep symbol as \*\*\_\*\* and click **OK**.
 
@@ -201,7 +201,7 @@ This set up ensures the same but independent site models for each partition. In 
 
 The clock model assumption of StarBeast3 is that every gene may evolve under it's own clock rate that is relative to the overall species tree clock rate. Therefore, the prior on each gene clock rate should have mean of 1 and not too high variance. If we choose not to estimate per gene clock rates, they default to 1 and all have the overall species tree clock rate.
 
-In this analysis we will estimate relative clock rate for each gene and set the species tree clock rate to 0.001 (based on previous estimate for RAG-1 {% cite hugall2007calibration --file StarBEAST3-Tutorial/master-refs.bib %}). Note, that in real analyses you can rarely avoid estimating the clock rate as it required a lot of a-priori data. Using strict clock is similarly too simplistic for many cases.
+In this analysis we will estimate relative clock rate for each gene and set the species tree clock rate to 0.001, based on previous estimate for RAG-1 {% cite hugall2007calibration --file StarBeast3-Tutorial/master-refs.bib %}. Note, that in real analyses you can rarely avoid estimating the clock rate as it required a lot of a-priori data. Using strict clock is similarly too simplistic for many cases.
 
 > Switch to **Gene Clock Model** tab.
 >
@@ -215,7 +215,7 @@ In this analysis we will estimate relative clock rate for each gene and set the 
 
 ## 1.7 Priors
 
-We will use birth-death model as species tree prior. Only constant rate coalescent prior is available as gene tree prior in starbeast3.
+We will use birth-death model as species tree prior. Only constant rate coalescent prior is available as gene tree prior in StarBeast3.
 
 > Switch to **Priors** tab.
 >
@@ -326,7 +326,7 @@ Generally, you should aim for effective sample size (ESS) values higher than 200
 
 ## 1.12 Explore Posterior Trees
 
-### Convergence diagnostic in **UglyTrees**
+### Browsing Tree Posterior Distribution in **UglyTrees**
 
 Our analysis produces a tree for each loci as well as the species tree. Therefore, it is not an easy task to browse though the all posterior trees and understand the relationships between them. We will use [**UglyTrees**](https://uglytrees.nz).
 
@@ -354,9 +354,9 @@ Note that by default, the width of each species tree node is proportional to the
 
 ## 1.13 Generating Summary Species Tree
 
-We can combine the posterior species trees into a single tree that tells a lot about the distribution but is much easier to visualise and comprehend.
+We can combine the posterior species trees into a single tree that tells a lot about the distribution but is much easier to visualise and comprehend. Note, that gene summary trees are not guaranteed to be compatible with species summary trees.
 
-One way to summarise the trees is by using the program **TreeAnnotator**. Until recently the *maximum clade credibility* tree (MCC) has been the default summary method in TreeAnnotator. To produce MCC trees TreeAnotator takes the set of trees and finds the best supported tree by maximising the product of the posterior clade probabilities. It will then annotate this representative summary tree with the mean ages of all the nodes and the corresponding 95% HPD ranges as well as the posterior clade probability for each node. A new point estimate, called a *conditional clade distribution* tree (CCD) has been proposed {% cite berling2025accurate --file StarBEAST3-Tutorial/master-refs.bib %}. It has been shown to outperform MCC in terms of accuracy (based on Robinson-Foulds distance to the true tree) and precision (how different are the point estimates calculated for replicate MCMC chains). CCD methods may produce a tree that would be well supported but has not been sampled during MCMC. This is beneficial for large trees and complex parameter regimes. Since both methods are still widely used, we show how to use them to summarise the posterior tree distribution.
+One way to summarise the trees is by using the program **TreeAnnotator**. Until recently the *maximum clade credibility* tree (MCC) has been the default summary method in TreeAnnotator. To produce MCC trees TreeAnotator takes the set of trees and finds the best supported tree by maximising the product of the posterior clade probabilities. It will then annotate this representative summary tree with the mean ages of all the nodes and the corresponding 95% HPD ranges as well as the posterior clade probability for each node. A new point estimate, called a *conditional clade distribution* tree (CCD) has been proposed {% cite berling2025accurate --file StarBeast3-Tutorial/master-refs.bib %}. It has been shown to outperform MCC in terms of accuracy (based on Robinson-Foulds distance to the true tree) and precision (how different are the point estimates calculated for replicate MCMC chains). CCD methods may produce a tree that would be well supported but has not been sampled during MCMC. This is beneficial for large trees and complex parameter regimes. Since both methods are still widely used, we show how to use them to summarise the posterior tree distribution. 
 
 > Importantly, currently we **can not** produce CCD trees reliably for trees including direct sampled ancestor fossils. Therefore, do not use it when **FBD** prior is selected for species tree!
 
@@ -509,11 +509,11 @@ Scroll down in the parameter list, you should notice new parameters describing t
 
 </figure>
 
-Here, the value of the coefficient of variation indicated that branch rates are spread moderatelly but not too distant from the mean. 
+Here, the value of the coefficient of variation indicated that branch rates are spread moderately but not too distant from the mean. 
 
 # 3. Total Evidence Dating
 
-Finally, StarBeast3 is capable of leveraging the fossil record and associated morphological data for **total-evidence analysis**. In this case we will use fossilized birth-death (FBD) model ({% cite heath2014fossilized gavryushkina2014bayesian --file StarBEAST3-Tutorial/master-refs.bib %}) as species tree prior in the MSC process. Since adding both morphological and molecular data can be complicated within BEAUti, you must follow the steps in order they are given.
+Finally, StarBeast3 is capable of leveraging the fossil record and associated morphological data for **total-evidence analysis**. In this case we will use fossilized birth-death (FBD) model {% cite heath2014fossilized gavryushkina2014bayesian --file StarBeast3-Tutorial/master-refs.bib %} as species tree prior in the MSC process. Since adding both morphological and molecular data can be complicated within BEAUti, you must follow the steps in order they are given.
 
 ## 3.1 Adding Fossils and Morphological Data
 
@@ -662,6 +662,8 @@ Now we will set the prior for strict clock rate of morphological data:
 >
 > Select **1/X** from the drop down list ([Figure 24](#fig24)). 
 
+Note that 1/X is an *improper* prior. In general it would be best to use a proper prior with its parameters defined by previous knowledge or estimated.
+
 <figure align="center">
 
 <a id="fig24"></a> <img src="figures/fbd_morph_clock_prior.png" />
@@ -677,13 +679,13 @@ We used name _canid_FBD_ for all log and tree files. The analysis which results 
 
 ## 3.8 Exploring the Results
 
-As before, you may open and explore the trace _.log_ file in Tracer, uglytrees.com and icytree.org. See sections 1.10 through 1.12. The section 1.13 guides you on how to make a summary tree. Now make one for the FBD analysis. 
+As before, you may open and explore the trace _.log_ file in Tracer, uglytrees.nz and icytree.org. See sections 1.10 through 1.12. The section 1.13 guides you on how to make a summary tree. Now make one for the FBD analysis. 
 
 Finally, load the trees from section 1 and section 3 in FBD and compare. 
 
 > Question: Can you identify any differences in clade support? 
 
-You should find that the tree topology is largely similar. However, the species _Cuon alpinus_ and _Lycaon pictus_ are now completely supported by the FBD analysis, while it is not the case when we use only molecular data in section 1. This discrepancy has been previously reported ({% cite zrzavy2004phylogeny --file StarBEAST3-Tutorial/master-refs.bib %}).   
+You should find that the tree topology is largely similar. However, the species _Cuon alpinus_ and _Lycaon pictus_ are now completely supported by the FBD analysis, while it is not the case when we use only molecular data in section 1. This discrepancy has been previously reported {% cite zrzavy2004phylogeny --file StarBeast3-Tutorial/master-refs.bib %}.   
 
 > Question: Can you identify any differences in clade height?
 
@@ -691,14 +693,14 @@ We can only compare the clades comprised of extant taxa. However, we do see diff
 
 # Good To Know 
 
-- To facilitate easy use of uglytrees, the species and individual names should follow a similar pattern so that uglytrees can guess the matching automatically, e.g., individual names should contain the species name as a substring, or before the first \_ etc.
+- To facilitate easy use of uglytrees, the species and individual names should follow a similar pattern so that uglytrees can guess the matching automatically, e.g., individual names should contain the species name as a substring, or before the first \_ etc.
 - StarBeast3 allows to sample tip dates. You can find more information on how to set it up through BEAUti here: <https://github.com/rbouckaert/starbeast3/tree/master/workshop>. 
 - You may also use relaxed clock for morphological data, instead of a strict one. However, at the moment this requires to edit the XML file by hand. Make sure you are using appropriate _species_ tree clock from the StarBeast3 package. Also, be careful to not include any operators that would break the dependence between species and gene trees. 
 - If you are comparing StarBEAST2 and 3 for your analyses you may notice that StarBeast3 is slower per-iteration, but in many cases reaches convergence faster when measured in wall-clock time. 
 
 # Useful Links
 
--   [Bayesian Evolutionary Analysis with BEAST 2](http://www.beast2.org/book.html) {% cite BEAST2book2014 --file StarBEAST3-Tutorial/master-refs.bib %}
+-   [Bayesian Evolutionary Analysis with BEAST 2](http://www.beast2.org/book.html) {% cite BEAST2book2014 --file StarBeast3-Tutorial/master-refs.bib %}
 -   BEAST 2 website and documentation: <http://www.beast2.org/>
 -   StarBeast3 repository: <https://github.com/rbouckaert/starbeast3/tree/master>
 -   Join the BEAST user discussion: <http://groups.google.com/group/beast-users>
@@ -707,4 +709,4 @@ We can only compare the clades comprised of extant taxa. However, we do see diff
 
 # Relevant References
 
-{% bibliography --cited --file StarBEAST3-Tutorial/master-refs.bib %}
+{% bibliography --cited --file StarBeast3-Tutorial/master-refs.bib %}
