@@ -1,10 +1,24 @@
 ---
 author: Ugne Stolz, Jordan Douglas
-level: Intermediate
 title: StarBeast3 Tutorial
 subtitle: Estimating species trees using StarBeast3
-beastversion: 2.7.8
 tracerversion: 1.7.x
+beastversion_tutorial: 2.7.8
+workflow: Advanced analysis
+beastversion_package: '2.7'
+status: current
+keywords:
+- multispecies coalescent
+- species tree
+- morphological
+- total evidence
+- relaxed clock
+packages:
+- starbeast3
+- CCD
+domains:
+- macroevolution
+- population genetics
 ---
 
 # Background
