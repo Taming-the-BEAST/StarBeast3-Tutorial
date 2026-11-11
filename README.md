@@ -350,7 +350,7 @@ Our analysis produces a tree for each loci as well as the species tree. Therefor
 
 Note that by default, the width of each species tree node is proportional to the effective population size.
 
-> **Question**. Choose to display one or two gene trees. Relating to the location in the species tree, where do most coalescent events happen for gene trees? Do you spot many/few incomplete lineage sorting events? How would this be influenced by **popMean** parameter prior?
+> **Question 1**. Choose to display one or two gene trees. Relating to the location in the species tree, where do most coalescent events happen for gene trees? Do you spot many/few incomplete lineage sorting events? How would this be influenced by **popMean** parameter prior?
 
 ## 1.13 Generating Summary Species Tree
 
@@ -358,7 +358,7 @@ We can combine the posterior species trees into a single tree that tells a lot a
 
 One way to summarise the trees is by using the program **TreeAnnotator**. Until recently the *maximum clade credibility* tree (MCC) has been the default summary method in TreeAnnotator. To produce MCC trees TreeAnotator takes the set of trees and finds the best supported tree by maximising the product of the posterior clade probabilities. It will then annotate this representative summary tree with the mean ages of all the nodes and the corresponding 95% HPD ranges as well as the posterior clade probability for each node. A new point estimate, called a *conditional clade distribution* tree (CCD) has been proposed {% cite berling2025accurate --file StarBeast3-Tutorial/master-refs.bib %}. It has been shown to outperform MCC in terms of accuracy (based on Robinson-Foulds distance to the true tree) and precision (how different are the point estimates calculated for replicate MCMC chains). CCD methods may produce a tree that would be well supported but has not been sampled during MCMC. This is beneficial for large trees and complex parameter regimes. Since both methods are still widely used, we show how to use them to summarise the posterior tree distribution. 
 
-> Importantly, currently we **can not** produce CCD trees reliably for trees including direct sampled ancestor fossils. Therefore, do not use it when **FBD** prior is selected for species tree!
+> Importantly, currently we **can not** produce CCD trees reliably for trees including direct sampled ancestor fossils. Therefore, do not use it when **FBD** prior is selected for species tree! When working on an FBD tree, make sure to set `Node heights` to `median` or `mean` so that sampled ancestors can be included in the summary tree.
 
 **To save time, you may run just one method and compare it to the other using the example below.**
 
@@ -412,7 +412,7 @@ Now your figure should look similar to [Figure 15](#fig15).
 
 </figure>
 
-> **Question**. One of the CCD0 summary method advantages is that it can evaluate tree topologies that were not sampled during the MCMC. In which scenario MCC and CCD0 trees would be (almost) the same? Does it then make sense that our dataset MCC and CCD0 summary tree topologies and clade posterior supports are practically identical?
+> **Question 2**. One of the CCD0 summary method advantages is that it can evaluate tree topologies that were not sampled during the MCMC. In which scenario MCC and CCD0 trees would be (almost) the same? Does it then make sense that our dataset MCC and CCD0 summary tree topologies and clade posterior supports are practically identical?
 
 # 2. Relaxed Clock Species Tree Reconstruction
 
@@ -679,15 +679,16 @@ We used name _canid_FBD_ for all log and tree files. The analysis which results 
 
 ## 3.8 Exploring the Results
 
-As before, you may open and explore the trace _.log_ file in Tracer, uglytrees.nz and icytree.org. See sections 1.10 through 1.12. The section 1.13 guides you on how to make a summary tree. Now make one for the FBD analysis. 
+As before, you may open and explore the trace _.log_ file in Tracer, uglytrees.nz and icytree.org. See sections 1.10 through 1.12. The section 1.13 guides you on how to make a summary tree. Now make one for the FBD analysis (*When using treeannotator on the FBD tree, set `Node heights` to `median` to ensure compatability with sampled ancestors*). 
+
 
 Finally, load the trees from section 1 and section 3 in FBD and compare. 
 
-> Question: Can you identify any differences in clade support? 
+> Question 3: Can you identify any differences in clade support? 
 
 You should find that the tree topology is largely similar. However, the species _Cuon alpinus_ and _Lycaon pictus_ are now completely supported by the FBD analysis, while it is not the case when we use only molecular data in section 1. This discrepancy has been previously reported {% cite zrzavy2004phylogeny --file StarBeast3-Tutorial/master-refs.bib %}.   
 
-> Question: Can you identify any differences in clade height?
+> Question 4: Can you identify any differences in clade height?
 
 We can only compare the clades comprised of extant taxa. However, we do see differences in the MRCA of the extant taxa and, for example, the divergence time between _Canis lupus_ and _Canis latrans_.
 
